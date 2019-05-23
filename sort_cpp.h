@@ -137,6 +137,31 @@ namespace SortCpp
 		for( T* i = l; i < r; i++ ) *i = temp[cur++];
 	}
 
+	template<class T>
+	void QuickSort( T* l, T* r )
+	{
+		if( (r - l) <= 1 ) return;
+
+		T z = *( l + ( r - l ) / 2 );	// Pivot = median
+		T *ll = l, *rr = r - 1;
+		while( ll <= rr )
+		{
+			while( *ll < z ) ll++;
+			while ( *rr > z ) rr--;
+			if( ll <= rr )
+			{
+				T tmp = *ll;
+				*ll = *rr;
+				*rr = tmp;
+
+				ll++;
+				rr--;
+			}
+		}
+		if( l < rr ) QuickSort( l, rr + 1 );
+		if( ll < r ) QuickSort( ll, r );
+	}
+
 }
 
 #endif // SORT_CPP_H
