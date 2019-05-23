@@ -67,7 +67,7 @@ namespace SortCpp
 			}
 		}
 	}
-
+	
 	template<class T>
 	void ShellSort( T* l, T* r )
 	{
@@ -103,6 +103,38 @@ namespace SortCpp
 		std::multiset<T> m;
 		for( T* i = l; i < r; i++ ) m.insert(*i);
 		for( T q : m ) *l = q, l++;
+	}
+
+	template<class T>
+	void MergeSort( T* l, T* r )
+	{
+		T* temp = new T[r - l];
+		_mergesort<T>( l, r, temp );
+		delete[] temp;
+	}
+	template<class T>
+	void _mergesort( T* l, T* r, T* temp )
+	{
+		if ( ( r - l ) <= 1 ) return;
+
+		T* m = l + (r - l) / 2;
+		_mergesort<T>( l, m, temp );
+		_mergesort<T>( m, r, temp );
+		_merge<T>( l, m, r, temp );
+	}
+	template<class T>
+	void _merge( T* l, T* m, T* r, T* temp )
+	{
+		T *cl = l, *cr = m, cur = 0;
+		while( cl < m && cr < r )
+		{
+			if( *cl < *cr ) temp[cur++] = *cl, cl++;
+			else temp[cur++] = *cr, cr++;
+		}
+		while( cl < m ) temp[cur++] = *cl, cl++;
+		while( cr < r ) temp[cur++] = *cr, cr++;
+		cur = 0;
+		for( T* i = l; i < r; i++ ) *i = temp[cur++];
 	}
 
 }
