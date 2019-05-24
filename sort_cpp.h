@@ -125,16 +125,17 @@ namespace SortCpp
 	template<class T>
 	void _merge( T* l, T* m, T* r, T* temp )
 	{
-		T *cl = l, *cr = m, cur = 0;
+		T *cl = l, *cr = m;
+		unsigned long arr_count = 0;
 		while( cl < m && cr < r )
 		{
-			if( *cl < *cr ) temp[cur++] = *cl, cl++;
-			else temp[cur++] = *cr, cr++;
+			if( *cl < *cr ) temp[arr_count++] = *cl, cl++;
+			else temp[arr_count++] = *cr, cr++;
 		}
-		while( cl < m ) temp[cur++] = *cl, cl++;
-		while( cr < r ) temp[cur++] = *cr, cr++;
-		cur = 0;
-		for( T* i = l; i < r; i++ ) *i = temp[cur++];
+		while( cl < m ) temp[arr_count++] = *cl, cl++;
+		while( cr < r ) temp[arr_count++] = *cr, cr++;
+		arr_count = 0;
+		for( T* i = l; i < r; i++ ) *i = temp[arr_count++];
 	}
 
 	template<class T>
