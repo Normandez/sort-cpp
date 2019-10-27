@@ -163,6 +163,32 @@ namespace SortCpp
 		if( ll < r ) QuickSort( ll, r );
 	}
 
+	void CountingSort( int* l, int* r, int k )
+	{
+		int n = r - l;
+		if( n <= 1 ) return;
+
+		int* counting_arr = new int[k];
+		for( size_t it = 0; it < k; it++ ) counting_arr[it] = 0;
+
+		for( size_t it = 0; it < n; it++ )
+		{
+			counting_arr[*l++] += 1;
+		}
+
+		l -= n;
+		for( size_t it = 0; it < k; it++ )
+		{
+			while(counting_arr[it])
+			{
+				*l++ = it;
+				counting_arr[it]--;
+			}
+		}
+		
+		delete[] counting_arr;
+	}
+
 }
 
 #endif // SORT_CPP_H
