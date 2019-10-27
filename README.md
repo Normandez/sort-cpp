@@ -9,6 +9,7 @@ C++ Realizations of Sorting Algorithms
 * TreeSort - based on BST, just insert all sorting array into std::multiset<T> (based on BSTs), and for_each it, O(n logn).
 * Merge Sort - split input array on elementary parts and merge them into output sorted array by per-element comparison via recurse, O(n logn)
 * QuickSort - compare elements depend on pivot (median value in current case) and replace them if needed via recurse, O(n logn)
-
+* CountingSort - only for elements in some small range [0, k-1]. Sorting make via additional sorting array with size k+1 by counting values in it. O(n + k)
+  
 # Usage example
 Ready usage example in main.cpp
